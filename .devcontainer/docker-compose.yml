@@ -1,4 +1,4 @@
-version: "3.9"
+# Docker Compose for Airflow (runs from the .devcontainer/ folder)
 
 # -----------------------------
 # Shared config for Airflow services
@@ -6,25 +6,19 @@ version: "3.9"
 x-airflow-common: &airflow-common
   image: apache/airflow:2.9.2
   restart: always
-  env_file:
-    - .env  # optional, if you keep AIRFLOW_UID/AIRFLOW_GID here
   environment:
     # Airflow core
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
 
-    # Database (Airflow metadata DB)
+    # Metadata DB (Airflow internal)
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
 
-    # Your DAG expects conn_id="Postgres"
-    # This env var auto-creates a Connection with ID = Postgres
+    # Your DAG expects conn_id="Postgres" → auto-create it from env
     AIRFLOW_CONN_POSTGRES: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-
-    # Expose the same id to your DAG via env (optional, matches your code)
     PG_CONN_ID: Postgres
 
     # Install extra Python deps at container start (no Dockerfile needed)
-    # Multiline avoids YAML parsing issues.
     _PIP_ADDITIONAL_REQUIREMENTS: >
       matplotlib
       pandas
@@ -32,20 +26,20 @@ x-airflow-common: &airflow-common
       psycopg2-binary
       apache-airflow-providers-postgres
 
-    # Useful in many official templates; defaults prevent warnings if not set
+    # Avoid UID/GID warnings without a .env file
     AIRFLOW_UID: "${AIRFLOW_UID:-50000}"
     AIRFLOW_GID: "${AIRFLOW_GID:-0}"
 
-    # Where your DAG writes temporary files
+    # Where the DAG writes files
     AIRFLOW_DATA_DIR: /opt/airflow/data
 
-  # Map local folders for dev convenience
+  # map repo folders (compose is in .devcontainer, so use ../)
   volumes:
-    - ./dags:/opt/airflow/dags
-    - ./logs:/opt/airflow/logs
-    - ./plugins:/opt/airflow/plugins
-    - ./config:/opt/airflow/config
-    - ./data:/opt/airflow/data
+    - ../dags:/opt/airflow/dags
+    - ../logs:/opt/airflow/logs
+    - ../plugins:/opt/airflow/plugins
+    - ../config:/opt/airflow/config
+    - ../data:/opt/airflow/data
 
   depends_on:
     postgres:
@@ -55,7 +49,6 @@ x-airflow-common: &airflow-common
 # Services
 # -----------------------------
 services:
-  # Postgres backing DB for Airflow and your pipeline target
   postgres:
     image: postgres:16
     restart: always
@@ -73,13 +66,11 @@ services:
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
 
-  # One-shot initialization: installs extras (via _PIP_ADDITIONAL_REQUIREMENTS at start),
-  # initializes the Airflow DB, and creates an admin user.
   airflow-init:
     <<: *airflow-common
     entrypoint: ["/bin/bash", "-c"]
     command: |
-      echo "Waiting for Postgres to be ready..." && \
+      echo "Waiting for Postgres..." && \
       until pg_isready -h postgres -U airflow -d airflow; do sleep 2; done && \
       airflow db init && \
       airflow users create \
@@ -94,7 +85,6 @@ services:
       postgres:
         condition: service_healthy
 
-  # Airflow webserver
   webserver:
     <<: *airflow-common
     command: webserver
@@ -109,7 +99,6 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-  # Airflow scheduler
   scheduler:
     <<: *airflow-common
     command: scheduler
