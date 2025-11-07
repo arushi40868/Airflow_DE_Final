@@ -1,24 +1,18 @@
 # Docker Compose for Airflow (runs from the .devcontainer/ folder)
 
-# -----------------------------
-# Shared config for Airflow services
-# -----------------------------
 x-airflow-common: &airflow-common
   image: apache/airflow:2.9.2
   restart: always
   environment:
-    # Airflow core
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-
-    # Metadata DB (Airflow internal)
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
 
-    # Your DAG expects conn_id="Postgres" → auto-create it from env
+    # auto-create the Postgres connection expected by your DAG
     AIRFLOW_CONN_POSTGRES: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
     PG_CONN_ID: Postgres
 
-    # Install extra Python deps at container start (no Dockerfile needed)
+    # install required Python packages (no Dockerfile needed)
     _PIP_ADDITIONAL_REQUIREMENTS: >
       matplotlib
       pandas
@@ -26,14 +20,10 @@ x-airflow-common: &airflow-common
       psycopg2-binary
       apache-airflow-providers-postgres
 
-    # Avoid UID/GID warnings without a .env file
     AIRFLOW_UID: "${AIRFLOW_UID:-50000}"
     AIRFLOW_GID: "${AIRFLOW_GID:-0}"
-
-    # Where the DAG writes files
     AIRFLOW_DATA_DIR: /opt/airflow/data
 
-  # map repo folders (compose is in .devcontainer, so use ../)
   volumes:
     - ../dags:/opt/airflow/dags
     - ../logs:/opt/airflow/logs
@@ -45,9 +35,6 @@ x-airflow-common: &airflow-common
     postgres:
       condition: service_healthy
 
-# -----------------------------
-# Services
-# -----------------------------
 services:
   postgres:
     image: postgres:16
@@ -106,8 +93,5 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-# -----------------------------
-# Volumes
-# -----------------------------
 volumes:
   postgres-db-volume:
