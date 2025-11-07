@@ -17,7 +17,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
-    _PIP_ADDITIONAL_REQUIREMENTS: apache-airflow-providers-postgres
+    _PIP_ADDITIONAL_REQUIREMENTS: "pandas matplotlib faker psycopg2-binary apache-airflow-providers-postgres"
 
     AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
   volumes:

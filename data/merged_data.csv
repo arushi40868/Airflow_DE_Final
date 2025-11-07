@@ -1,0 +1,101 @@
+firstname,lastname,person_email,company_name,company_domain,company_email,industry,employees_count,employees_bucket,founded_year,country
+Tyrone,Mccullough,tyrone.mccullough@li.com,Travis Inc,li.com,info@li.com,Facilitate,3731,1000+,2005,Nepal
+Aaron,Blackwell,aaron.blackwell@davis.com,Williamson-Martin,davis.com,info@davis.com,Deliver,1129,1000+,2006,Sudan
+Michael,Brooks,michael.brooks@russell.com,Wong-Owens,russell.com,info@russell.com,Scale,3001,1000+,2023,Angola
+Ricky,Parker,ricky.parker@hancock.com,Hampton-Watkins,hancock.com,info@hancock.com,Synthesize,2349,1000+,2023,American Samoa
+Barbara,Berry,barbara.berry@flynn.com,"Ortega, Williams and Nunez",flynn.com,info@flynn.com,Leverage,3653,1000+,2015,Sierra Leone
+Theresa,Young,theresa.young@williams.com,"Dunn, Wilkinson and Cook",williams.com,info@williams.com,Innovate,3073,1000+,1986,Congo
+Eric,Hopkins,eric.hopkins@rios.com,"Chambers, Thomas and Roberts",rios.com,info@rios.com,Seize,1909,1000+,2015,Togo
+Tina,Smith,tina.smith@simmons-padilla.biz,Allen-Whitaker,simmons-padilla.biz,info@simmons-padilla.biz,Integrate,1900,1000+,1979,Congo
+Nicholas,Whitaker,nicholas.whitaker@christensen.com,"Hansen, Martin and Rogers",christensen.com,info@christensen.com,Grow,1602,1000+,1982,Georgia
+Samuel,Bean,samuel.bean@stanley.biz,Duncan-Watson,stanley.biz,info@stanley.biz,Harness,2714,1000+,1995,Czech Republic
+Christopher,Nguyen,christopher.nguyen@moses-banks.com,Combs-Herring,moses-banks.com,info@moses-banks.com,Re-contextualize,510,100–999,1970,Bahamas
+Ronald,Castro,ronald.castro@wilkins.biz,"Compton, Jefferson and Johnson",wilkins.biz,info@wilkins.biz,Implement,409,100–999,2006,Faroe Islands
+Brandon,Cruz,brandon.cruz@espinoza-summers.com,Walsh Group,espinoza-summers.com,info@espinoza-summers.com,Facilitate,3374,1000+,1970,Brazil
+Kristen,Aguirre,kristen.aguirre@butler-brooks.com,"Randall, Jenkins and Gonzalez",butler-brooks.com,info@butler-brooks.com,Visualize,4937,1000+,1990,Nicaragua
+Edward,Torres,edward.torres@coleman.net,"Morgan, Wright and Smith",coleman.net,info@coleman.net,Empower,3171,1000+,2025,North Macedonia
+Mary,Griffin,mary.griffin@davis.com,Williamson-Martin,davis.com,info@davis.com,Deliver,1129,1000+,2006,Sudan
+Juan,Sims,juan.sims@horton-maldonado.com,Snyder-Ferguson,horton-maldonado.com,info@horton-maldonado.com,Embrace,978,100–999,1990,Guadeloupe
+Melissa,Fleming,melissa.fleming@riley-perkins.net,"Tapia, Drake and Odom",riley-perkins.net,info@riley-perkins.net,Whiteboard,3753,1000+,2004,Northern Mariana Islands
+Cassandra,Gordon,cassandra.gordon@butler-brooks.com,"Randall, Jenkins and Gonzalez",butler-brooks.com,info@butler-brooks.com,Visualize,4937,1000+,1990,Nicaragua
+Cynthia,Bowers,cynthia.bowers@carter-owens.com,"Boyer, Miller and Kennedy",carter-owens.com,info@carter-owens.com,Orchestrate,3120,1000+,1986,Hong Kong
+Anthony,Flores,anthony.flores@graham-barron.com,"Young, Kramer and Williams",graham-barron.com,info@graham-barron.com,Enable,762,100–999,1989,Burkina Faso
+Crystal,Greer,crystal.greer@murphy-sullivan.com,Barnes-Howell,murphy-sullivan.com,info@murphy-sullivan.com,Iterate,2392,1000+,2005,Germany
+Joseph,Wilson,joseph.wilson@wilkins.biz,"Compton, Jefferson and Johnson",wilkins.biz,info@wilkins.biz,Implement,409,100–999,2006,Faroe Islands
+Michael,Cortez,michael.cortez@murphy-taylor.info,Nelson and Sons,murphy-taylor.info,info@murphy-taylor.info,Synergize,1574,1000+,1994,Cote d'Ivoire
+Frank,Anderson,frank.anderson@dennis-anderson.com,Perez Ltd,dennis-anderson.com,info@dennis-anderson.com,Transition,1162,1000+,1974,Nepal
+Jillian,Brown,jillian.brown@reynolds-osborn.com,Adams Group,reynolds-osborn.com,info@reynolds-osborn.com,Seize,2368,1000+,1982,Timor-Leste
+Benjamin,Harris,benjamin.harris@williams.com,"Dunn, Wilkinson and Cook",williams.com,info@williams.com,Innovate,3073,1000+,1986,Congo
+Courtney,Cox,courtney.cox@rogers.com,Mckee Ltd,rogers.com,info@rogers.com,E-enable,4950,1000+,2019,Belarus
+Jennifer,Ramirez,jennifer.ramirez@butler.com,"Larsen, Morrison and Jones",butler.com,info@butler.com,Repurpose,1795,1000+,2015,Eritrea
+Jeremy,Hughes,jeremy.hughes@brewer-gilbert.com,Watts-King,brewer-gilbert.com,info@brewer-gilbert.com,Benchmark,243,100–999,2002,Portugal
+Nicole,Martinez,nicole.martinez@griffith.info,Perez-Ayers,griffith.info,info@griffith.info,Integrate,3959,1000+,1990,Iceland
+Taylor,Thompson,taylor.thompson@banks.info,"Rodriguez, Perez and Rodriguez",banks.info,info@banks.info,Seize,2299,1000+,1979,Timor-Leste
+Michael,Reed,michael.reed@moore-burns.com,Scott-Bolton,moore-burns.com,info@moore-burns.com,Envisioneer,2338,1000+,2002,Jamaica
+Sydney,Brown,sydney.brown@butler-brooks.com,"Randall, Jenkins and Gonzalez",butler-brooks.com,info@butler-brooks.com,Visualize,4937,1000+,1990,Nicaragua
+Matthew,Schneider,matthew.schneider@dominguez.net,Cisneros-Jackson,dominguez.net,info@dominguez.net,Reinvent,1583,1000+,2005,Bosnia and Herzegovina
+Valerie,Andrews,valerie.andrews@welch.biz,"Harris, Guerrero and Brown",welch.biz,info@welch.biz,Drive,498,100–999,1985,Bermuda
+Carl,Taylor,carl.taylor@stewart.com,Hunt-Rodriguez,stewart.com,info@stewart.com,Visualize,4583,1000+,1987,Senegal
+Catherine,King,catherine.king@rojas.com,"Prince, Morales and Waller",rojas.com,info@rojas.com,Engage,3040,1000+,1999,Swaziland
+David,Rose,david.rose@simmons-padilla.biz,Allen-Whitaker,simmons-padilla.biz,info@simmons-padilla.biz,Integrate,1900,1000+,1979,Congo
+William,Johnson,william.johnson@reynolds-osborn.com,Adams Group,reynolds-osborn.com,info@reynolds-osborn.com,Seize,2368,1000+,1982,Timor-Leste
+Karen,Walker,karen.walker@butler-brooks.com,"Randall, Jenkins and Gonzalez",butler-brooks.com,info@butler-brooks.com,Visualize,4937,1000+,1990,Nicaragua
+James,Ponce,james.ponce@davis.com,Williamson-Martin,davis.com,info@davis.com,Deliver,1129,1000+,2006,Sudan
+Charles,James,charles.james@morgan-rodriguez.com,"Landry, Oliver and Morrison",morgan-rodriguez.com,info@morgan-rodriguez.com,Transition,1964,1000+,1970,Myanmar
+Allison,Beck,allison.beck@rhodes.org,"King, Everett and Lucero",rhodes.org,info@rhodes.org,Unleash,721,100–999,1973,Paraguay
+Justin,Avila,justin.avila@preston.com,Webster-King,preston.com,info@preston.com,Monetize,3086,1000+,2005,Saint Helena
+Carl,Reed,carl.reed@mckinney-pittman.com,"Arroyo, Lyons and Turner",mckinney-pittman.com,info@mckinney-pittman.com,Embrace,789,100–999,2013,Paraguay
+Rebecca,Moses,rebecca.moses@petty.com,"Bird, Romero and Stanton",petty.com,info@petty.com,Architect,563,100–999,2024,United States Minor Outlying Islands
+Jeffrey,Stevenson,jeffrey.stevenson@oconnell.biz,Rosario-Harrington,oconnell.biz,info@oconnell.biz,Engage,4411,1000+,2024,South Africa
+Timothy,Harper,timothy.harper@rice.info,"Hall, Case and Gilbert",rice.info,info@rice.info,Synthesize,3928,1000+,1994,Kenya
+Lisa,Montoya,lisa.montoya@fischer.org,"Anderson, Thornton and Santos",fischer.org,info@fischer.org,Re-intermediate,4102,1000+,2005,Jamaica
+Dale,Ali,dale.ali@beard.com,Jenkins PLC,beard.com,info@beard.com,Facilitate,3406,1000+,2007,Germany
+Lori,Rogers,lori.rogers@morgan-rodriguez.com,"Landry, Oliver and Morrison",morgan-rodriguez.com,info@morgan-rodriguez.com,Transition,1964,1000+,1970,Myanmar
+Megan,Perez,megan.perez@li.com,Travis Inc,li.com,info@li.com,Facilitate,3731,1000+,2005,Nepal
+Kelly,Brock,kelly.brock@oconnell.biz,Rosario-Harrington,oconnell.biz,info@oconnell.biz,Engage,4411,1000+,2024,South Africa
+Sierra,Murphy,sierra.murphy@ayala.net,"Barron, Martin and Harris",ayala.net,info@ayala.net,Transition,3190,1000+,1998,Wallis and Futuna
+Brenda,Davis,brenda.davis@bentley.com,Reynolds-Henry,bentley.com,info@bentley.com,Monetize,3112,1000+,2018,Cote d'Ivoire
+Monique,Lewis,monique.lewis@lopez.net,Hendrix PLC,lopez.net,info@lopez.net,Implement,1231,1000+,1985,Mexico
+Ryan,Allen,ryan.allen@graham-barron.com,"Young, Kramer and Williams",graham-barron.com,info@graham-barron.com,Enable,762,100–999,1989,Burkina Faso
+Emily,Mcclain,emily.mcclain@robbins.biz,Bentley-Pena,robbins.biz,info@robbins.biz,Leverage,2836,1000+,1978,Algeria
+Michael,Ferguson,michael.ferguson@watson.info,Navarro Group,watson.info,info@watson.info,Architect,3746,1000+,2024,Puerto Rico
+Alyssa,Wilkinson,alyssa.wilkinson@rogers.com,Mckee Ltd,rogers.com,info@rogers.com,E-enable,4950,1000+,2019,Belarus
+Anne,Moran,anne.moran@williams.com,"Dunn, Wilkinson and Cook",williams.com,info@williams.com,Innovate,3073,1000+,1986,Congo
+Nicholas,Mcneil,nicholas.mcneil@brewer-gilbert.com,Watts-King,brewer-gilbert.com,info@brewer-gilbert.com,Benchmark,243,100–999,2002,Portugal
+Teresa,Moore,teresa.moore@moore-burns.com,Scott-Bolton,moore-burns.com,info@moore-burns.com,Envisioneer,2338,1000+,2002,Jamaica
+Savannah,Lee,savannah.lee@watson.info,Navarro Group,watson.info,info@watson.info,Architect,3746,1000+,2024,Puerto Rico
+Stephen,Rice,stephen.rice@ward.com,Pearson-Rios,ward.com,info@ward.com,Enable,4750,1000+,1978,Tajikistan
+Sharon,Hill,sharon.hill@bentley.com,Reynolds-Henry,bentley.com,info@bentley.com,Monetize,3112,1000+,2018,Cote d'Ivoire
+Joseph,Perez,joseph.perez@flynn.com,"Ortega, Williams and Nunez",flynn.com,info@flynn.com,Leverage,3653,1000+,2015,Sierra Leone
+Ronald,Arnold,ronald.arnold@hoffman.com,Hall Inc,hoffman.com,info@hoffman.com,Transform,52,1–99,1988,Anguilla
+Aaron,Harper,aaron.harper@cardenas.com,Valentine Ltd,cardenas.com,info@cardenas.com,Benchmark,4006,1000+,1980,Bulgaria
+Bobby,Reynolds,bobby.reynolds@smith.net,Powell Inc,smith.net,info@smith.net,Synthesize,3542,1000+,1991,Bahrain
+Elizabeth,Espinoza,elizabeth.espinoza@greer-valentine.biz,Lopez-Mcbride,greer-valentine.biz,info@greer-valentine.biz,Integrate,4309,1000+,1972,Guyana
+John,Farmer,john.farmer@hicks.com,"Collins, Gonzalez and Delgado",hicks.com,info@hicks.com,Synthesize,4457,1000+,2022,Monaco
+John,Todd,john.todd@moses-banks.com,Combs-Herring,moses-banks.com,info@moses-banks.com,Re-contextualize,510,100–999,1970,Bahamas
+Daniel,Harding,daniel.harding@petty.com,"Bird, Romero and Stanton",petty.com,info@petty.com,Architect,563,100–999,2024,United States Minor Outlying Islands
+Vanessa,Lawrence,vanessa.lawrence@carter-owens.com,"Boyer, Miller and Kennedy",carter-owens.com,info@carter-owens.com,Orchestrate,3120,1000+,1986,Hong Kong
+Patricia,Brown,patricia.brown@hancock.com,Hampton-Watkins,hancock.com,info@hancock.com,Synthesize,2349,1000+,2023,American Samoa
+Gregory,Massey,gregory.massey@carter-owens.com,"Boyer, Miller and Kennedy",carter-owens.com,info@carter-owens.com,Orchestrate,3120,1000+,1986,Hong Kong
+Jocelyn,Tucker,jocelyn.tucker@welch.biz,"Harris, Guerrero and Brown",welch.biz,info@welch.biz,Drive,498,100–999,1985,Bermuda
+Jonathan,Gonzales,jonathan.gonzales@rhodes.org,"King, Everett and Lucero",rhodes.org,info@rhodes.org,Unleash,721,100–999,1973,Paraguay
+Cassidy,Taylor,cassidy.taylor@collins-martinez.com,"Rodriguez, Smith and Pena",collins-martinez.com,info@collins-martinez.com,Repurpose,3864,1000+,1972,Kuwait
+Frank,Baldwin,frank.baldwin@edwards-vaughn.net,Johnson PLC,edwards-vaughn.net,info@edwards-vaughn.net,Deliver,4345,1000+,1985,Cuba
+Jonathan,Fitzgerald,jonathan.fitzgerald@snyder-mcintosh.com,Chase-Richardson,snyder-mcintosh.com,info@snyder-mcintosh.com,Iterate,710,100–999,2015,Bulgaria
+David,Hall,david.hall@dean.com,Watson-Stafford,dean.com,info@dean.com,Mesh,2307,1000+,1975,Honduras
+Kurt,Harper,kurt.harper@barber-davis.net,"Mccarthy, Jones and Glass",barber-davis.net,info@barber-davis.net,Engage,1097,1000+,2016,Cape Verde
+David,Perkins,david.perkins@mckinney-pittman.com,"Arroyo, Lyons and Turner",mckinney-pittman.com,info@mckinney-pittman.com,Embrace,789,100–999,2013,Paraguay
+Darren,Martin,darren.martin@li.com,Travis Inc,li.com,info@li.com,Facilitate,3731,1000+,2005,Nepal
+Donald,Collins,donald.collins@carr.org,"Marks, Oneal and Reyes",carr.org,info@carr.org,Grow,4409,1000+,2022,Wallis and Futuna
+Devin,Norman,devin.norman@castillo-browning.com,Schneider LLC,castillo-browning.com,info@castillo-browning.com,Whiteboard,2192,1000+,2014,Saint Helena
+April,Henderson,april.henderson@montoya.com,Weber-Baker,montoya.com,info@montoya.com,Engage,944,100–999,1986,Bangladesh
+Peter,Collins,peter.collins@avery-arias.com,Williamson-Turner,avery-arias.com,info@avery-arias.com,Enhance,3439,1000+,1999,Switzerland
+Donald,Dixon,donald.dixon@cardenas.com,Valentine Ltd,cardenas.com,info@cardenas.com,Benchmark,4006,1000+,1980,Bulgaria
+Gregory,Murray,gregory.murray@rhodes.org,"King, Everett and Lucero",rhodes.org,info@rhodes.org,Unleash,721,100–999,1973,Paraguay
+Donald,Kelly,donald.kelly@shah.com,Garcia Inc,shah.com,info@shah.com,Brand,2066,1000+,1971,Syrian Arab Republic
+Erica,Zamora,erica.zamora@avery-arias.com,Williamson-Turner,avery-arias.com,info@avery-arias.com,Enhance,3439,1000+,1999,Switzerland
+Morgan,Stewart,morgan.stewart@flynn.com,"Ortega, Williams and Nunez",flynn.com,info@flynn.com,Leverage,3653,1000+,2015,Sierra Leone
+Christian,Martin,christian.martin@ward.com,Pearson-Rios,ward.com,info@ward.com,Enable,4750,1000+,1978,Tajikistan
+Tara,Wagner,tara.wagner@preston.com,Webster-King,preston.com,info@preston.com,Monetize,3086,1000+,2005,Saint Helena
+Jo,Randolph,jo.randolph@butler.com,"Larsen, Morrison and Jones",butler.com,info@butler.com,Repurpose,1795,1000+,2015,Eritrea
+Lisa,Jacobs,lisa.jacobs@williams.com,"Dunn, Wilkinson and Cook",williams.com,info@williams.com,Innovate,3073,1000+,1986,Congo
