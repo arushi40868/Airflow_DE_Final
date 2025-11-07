@@ -5,12 +5,12 @@ import csv
 import logging
 import os
 import shutil
+import random
 from datetime import datetime, timedelta
 
 # === Airflow ===
 from airflow import DAG
-from airflow.sdk import task  # Airflow 3+ TaskFlow API
-from airflow.utils.task_group import TaskGroup
+from airflow.sdk import task, TaskGroup  # ✅ updated import
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 # === Third-Party ===
@@ -176,7 +176,55 @@ with DAG(
         return out
 
     # ------------------------------------------------------------------------------
-    # MERGE (true relation on domain)
+    # ALIGN PERSON DOMAINS (ensures successful join)
+    # ------------------------------------------------------------------------------
+    @task()
+    def align_person_domains(persons_tx: str, companies_tx: str) -> str:
+        """
+        Ensure persons have domains that exist in companies. If a person's email
+        domain isn't in the companies set, replace it with a random company domain
+        and rebuild the email.
+        """
+        with open(persons_tx, newline="", encoding="utf-8") as f:
+            pr = list(csv.DictReader(f))
+        with open(companies_tx, newline="", encoding="utf-8") as f:
+            cr = list(csv.DictReader(f))
+
+        company_domains = [
+            c.get("domain", "").strip().lower() for c in cr if c.get("domain")
+        ]
+        company_domains = [d for d in company_domains if d]
+        if not company_domains:
+            raise ValueError("No company domains available to align.")
+
+        out = persons_tx.replace("persons_tx.csv", "persons_aligned.csv")
+
+        aligned = []
+        for p in pr:
+            first = (p.get("firstname", "") or "").strip().lower().replace(" ", "")
+            last = (p.get("lastname", "") or "").strip().lower().replace(" ", "")
+            cur_domain = (p.get("person_domain", "") or "").strip().lower()
+
+            if cur_domain not in company_domains:
+                new_dom = random.choice(company_domains)
+                local = ".".join([x for x in [first, last] if x]) or (
+                    p.get("email", "").split("@")[0] or "user"
+                )
+                new_email = f"{local}@{new_dom}"
+                p["email"] = new_email
+                p["person_domain"] = new_dom
+            aligned.append(p)
+
+        with open(out, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=aligned[0].keys())
+            w.writeheader()
+            w.writerows(aligned)
+
+        logging.info("Aligned persons to company domains → %s", out)
+        return out
+
+    # ------------------------------------------------------------------------------
+    # MERGE
     # ------------------------------------------------------------------------------
     @task()
     def merge_csvs_tx(persons_tx: str, companies_tx: str, output_dir: str) -> str:
@@ -194,7 +242,7 @@ with DAG(
             dom = p.get("person_domain", "")
             c = cx.get(dom)
             if not c:
-                continue  # skip if no matching company domain
+                continue
             merged.append(
                 {
                     "firstname": p["firstname"],
@@ -213,7 +261,7 @@ with DAG(
 
         if not merged:
             raise ValueError(
-                "No joined rows on domain; increase quantities or adjust join."
+                "No joined rows on domain; try align_person_domains first."
             )
 
         with open(merged_path, "w", newline="", encoding="utf-8") as f:
@@ -235,7 +283,6 @@ with DAG(
         table: str = TARGET_TABLE,
         append: bool = APPEND,
     ) -> int:
-        # Read CSV
         with open(csv_path, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             cols = reader.fieldnames or []
@@ -267,13 +314,10 @@ with DAG(
                 if maybe_truncate_sql:
                     cur.execute(maybe_truncate_sql)
                     logging.info("Truncated %s.%s before insert", schema, table)
-
                 cur.executemany(insert_sql, rows)
                 conn.commit()
-
             logging.info("Inserted %d rows into %s.%s", len(rows), schema, table)
             return len(rows)
-
         except DatabaseError as e:
             conn.rollback()
             logging.exception("Database error during load_csv_to_pg: %s", e)
@@ -330,7 +374,6 @@ with DAG(
         if not os.path.exists(folder_path):
             logging.info("Folder %s does not exist; nothing to clear.", folder_path)
             return
-
         removed = 0
         for name in os.listdir(folder_path):
             path = os.path.join(folder_path, name)
@@ -343,7 +386,6 @@ with DAG(
                     removed += 1
             except Exception as e:
                 logging.warning("Failed to delete %s: %s", path, e)
-
         logging.info("Cleaned %d items from %s", removed, folder_path)
 
     # ------------------------------------------------------------------------------
@@ -359,8 +401,10 @@ with DAG(
         persons_tx = transform_persons(persons_file)
         companies_tx = transform_companies(companies_file)
 
+    aligned_persons = align_person_domains(persons_tx, companies_tx)
+
     with TaskGroup(group_id="load") as load:
-        merged_csv = merge_csvs_tx(persons_tx, companies_tx, out_dir)
+        merged_csv = merge_csvs_tx(aligned_persons, companies_tx, out_dir)
         inserted = load_csv_to_pg(
             conn_id=PG_CONN_ID,
             csv_path=merged_csv,
@@ -377,5 +421,13 @@ with DAG(
             output_dir=OUTPUT_DIR,
         )
 
-    # Graph: ensure dir → ingest → transform → load → analyze → cleanup
-    out_dir >> ingest >> transform >> load >> analyze >> clear_folder(OUTPUT_DIR)
+    # Graph: ensure dir → ingest → transform → align → load → analyze → cleanup
+    (
+        out_dir
+        >> ingest
+        >> transform
+        >> aligned_persons
+        >> load
+        >> analyze
+        >> clear_folder(OUTPUT_DIR)
+    )
