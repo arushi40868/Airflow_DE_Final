@@ -115,7 +115,7 @@ Once the DAG completes:
 
 | DAG Status | Graph View |
 |-------------|-------------|
-| ![Successful DAG Execution](screenshots/dag_success.png) | ![Graph View](screenshots/dag_graph.png) |
+| ![Successful DAG Execution](successful_run.png) | ![Graph View](pipeline.png) |
 
 ---
 
