@@ -10,10 +10,16 @@ from datetime import datetime, timedelta
 
 # === Airflow ===
 from airflow import DAG
-from airflow.sdk import task, TaskGroup  # ✅ updated import
+
+# Be robust to different Airflow installs
+try:
+    from airflow.sdk import task, TaskGroup
+except Exception:
+    from airflow.decorators import task
+    from airflow.utils.task_group import TaskGroup
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-# === Third-Party ===
+# === Third-Party used by LOAD ===
 from psycopg2 import Error as DatabaseError
 from faker import Faker
 
@@ -41,7 +47,7 @@ default_args = {
 with DAG(
     dag_id="pipeline",
     start_date=datetime(2025, 10, 1),
-    schedule="@daily",  # requirement: has a recurring schedule
+    schedule="@daily",
     catchup=False,
     default_args=default_args,
     tags=["demo", "etl", "postgres"],
@@ -155,13 +161,13 @@ with DAG(
                 bucket = (
                     "1–99"
                     if employees < 100
-                    else "100–999" if employees < 1000 else "1000+"
+                    else ("100–999" if employees < 1000 else "1000+")
                 )
                 rows.append(
                     {
                         **rec,
                         "email": email,  # normalized
-                        "employees_bucket": bucket,  # simple derived feature
+                        "employees_bucket": bucket,  # derived feature
                     }
                 )
 
@@ -273,7 +279,7 @@ with DAG(
         return merged_path
 
     # ------------------------------------------------------------------------------
-    # LOAD → POSTGRES
+    # LOAD → POSTGRES  (kept as-is since it's working for you)
     # ------------------------------------------------------------------------------
     @task()
     def load_csv_to_pg(
@@ -326,14 +332,20 @@ with DAG(
             conn.close()
 
     # ------------------------------------------------------------------------------
-    # ANALYZE (reads back from Postgres, creates PNG)
+    # ANALYZE (robust for pandas/SQLAlchemy 2.x; safe imports inside)
     # ------------------------------------------------------------------------------
     @task()
     def analyze_postgres(conn_id: str, schema: str, table: str, output_dir: str) -> str:
+        # Heavy libs INSIDE the task so the webserver can parse the DAG without them.
         import pandas as pd
+        import matplotlib
+
+        matplotlib.use("Agg")  # headless
         import matplotlib.pyplot as plt
 
+        # Prefer SQLAlchemy connection; fall back to raw psycopg2 if needed
         hook = PostgresHook(postgres_conn_id=conn_id)
+
         sql = f"""
             SELECT industry,
                    AVG(NULLIF(employees_count, '')::INT) AS avg_employees
@@ -343,9 +355,25 @@ with DAG(
             ORDER BY avg_employees DESC
             LIMIT 10;
         """
-        df = hook.get_pandas_df(sql)
 
-        if df.empty:
+        df = None
+        try:
+            # --- Preferred path: SQLAlchemy engine + Connection + text() ---
+            from sqlalchemy import text
+
+            engine = hook.get_sqlalchemy_engine()
+            with engine.connect() as conn:
+                df = pd.read_sql_query(text(sql), con=conn)
+        except Exception as e:
+            # --- Fallback: raw DBAPI (psycopg2) connection ---
+            logging.warning("SQLAlchemy read failed (%s); falling back to DBAPI.", e)
+            conn = hook.get_conn()  # psycopg2 connection (has .cursor)
+            try:
+                df = pd.read_sql_query(sql, con=conn)
+            finally:
+                conn.close()
+
+        if df is None or df.empty:
             raise ValueError("No data returned for analysis.")
 
         ax = df.plot(
@@ -363,6 +391,7 @@ with DAG(
         outpath = os.path.join(output_dir, "industry_avg_employees.png")
         plt.tight_layout()
         plt.savefig(outpath, dpi=150)
+        plt.close()
         logging.info("Saved analysis chart → %s", outpath)
         return outpath
 
